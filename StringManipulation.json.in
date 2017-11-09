@@ -1,0 +1,11 @@
+﻿{
+    \"Name\" : \"String Manipulation\",
+    \"Version\" : \"0.0.1\",
+    \"CompatVersion\" : \"0.0.1\",
+    \"Vendor\" : \"Zhiyi Zhang\",
+    \"Copyright\" : \"(C) Zhiyi Zhang\",
+    \"License\" : \"GPL\",
+    \"Description\" : \"Provides actions for text manipulation\",
+    \"Url\" : \"https://github.com/x1596357/qtcreator-plugin-stringmanipulation\",
+    $$dependencyList
+}
