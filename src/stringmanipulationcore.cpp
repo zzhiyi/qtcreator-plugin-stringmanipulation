@@ -1,4 +1,4 @@
-﻿#include "stringmanipulationcore.hpp"
+#include "stringmanipulationcore.hpp"
 #include <texteditor/texteditor.h>
 #include <QStringBuilder>
 using namespace TextEditor;
@@ -13,8 +13,7 @@ static QString stringToCharArrayConverter(const QString &src)
     QString result;
     result = "{";
 
-    int i;
-    for (i = 0; i < src.size(); i++) {
+    for (int i = 0; i < src.size(); i++) {
         result += "'" + src[i] + "',";
     }
     result += "0}";
