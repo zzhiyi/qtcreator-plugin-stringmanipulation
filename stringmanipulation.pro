@@ -2,17 +2,17 @@ DEFINES += STRINGMANIPULATION_LIBRARY
 DEFINES *= QT_USE_QSTRINGBUILDER
 include(src/src.pri)
 
-# Qt Creator linking asdf
+# Qt Creator linking
 
 ## Either set the IDE_SOURCE_TREE when running qmake,
 ## or set the QTC_SOURCE environment variable, to override the default setting
 isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = $$(QTC_SOURCE)
-isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = "/data/eric/source/qt-creator"
+isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = "/home/eric/src/qt-creator-opensource-src-4.7.0"
 
 ## Either set the IDE_BUILD_TREE when running qmake,
 ## or set the QTC_BUILD environment variable, to override the default setting
 isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
-isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "/data/eric/build/build-qtcreator-Desktop_Qt_5_10_1_GCC_64bit-Release"
+isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "/home/eric/build/build-qtcreator-Desktop_Qt_5_11_1_GCC_64bit-Debug"
 
 ## uncomment to build plugin into user config directory
 ## <localappdata>/plugins/<ideversion>
