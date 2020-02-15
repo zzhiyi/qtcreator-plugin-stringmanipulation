@@ -59,6 +59,16 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     menu->addAction(cmdSelectedStringToCharArray);
     contextMenu->addAction(cmdSelectedStringToCharArray);
 
+    // Strip Space
+    QAction *actionStripSpaceInSelectedString = new QAction(tr("Strip Space in Selected String"), this);
+    Core::Command *cmdStripSpaceInSelectedString = Core::ActionManager::registerAction(
+        actionStripSpaceInSelectedString, Constants::STRIP_SPACE_IN_SELECTED_STRING,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionStripSpaceInSelectedString, &QAction::triggered, &core,
+            &StringManipulationCore::stripSpaceInSelectedString);
+    menu->addAction(cmdStripSpaceInSelectedString);
+    contextMenu->addAction(cmdStripSpaceInSelectedString);
+
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
     Core::ActionContainer *cppEditorContextMenu =

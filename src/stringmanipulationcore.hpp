@@ -1,4 +1,4 @@
-﻿#ifndef STRINGMANIPULATIONCORE_HPP
+#ifndef STRINGMANIPULATIONCORE_HPP
 #define STRINGMANIPULATIONCORE_HPP
 
 #include <QObject>
@@ -11,6 +11,7 @@ public:
 
 public slots:
     void selectedStringToCharArray();
+    void stripSpaceInSelectedString();
 };
 
 #endif // STRINGMANIPULATIONCORE_HPP

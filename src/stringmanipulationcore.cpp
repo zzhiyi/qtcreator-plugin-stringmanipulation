@@ -62,3 +62,25 @@ void StringManipulationCore::selectedStringToCharArray()
 
     cursor.insertText(stringToCharArrayConverter(cursor.selectedText()));
 }
+
+static QString stripSpaceConverter(const QString &src)
+{
+    QString result;
+
+    for (int i = 0; i < src.size(); i++) {
+        if (src[i] != ' ')
+            result += src[i];
+    }
+    return result;
+}
+
+void StringManipulationCore::stripSpaceInSelectedString()
+{
+    BaseTextEditor *editor = BaseTextEditor::currentTextEditor();
+    if (!editor) return;
+
+    QTextCursor cursor = editor->textCursor();
+    if (!cursor.hasSelection()) return;
+
+    cursor.insertText(stripSpaceConverter(cursor.selectedText()));
+}
