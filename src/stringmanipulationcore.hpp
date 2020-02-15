@@ -12,6 +12,7 @@ public:
 public slots:
     void selectedStringToCharArray();
     void stripSpaceInSelectedString();
+    void addBreakPoint();
 };
 
 #endif // STRINGMANIPULATIONCORE_HPP

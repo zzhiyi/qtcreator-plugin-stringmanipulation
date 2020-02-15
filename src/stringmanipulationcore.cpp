@@ -84,3 +84,12 @@ void StringManipulationCore::stripSpaceInSelectedString()
 
     cursor.insertText(stripSpaceConverter(cursor.selectedText()));
 }
+
+void StringManipulationCore::addBreakPoint()
+{
+    BaseTextEditor *editor = BaseTextEditor::currentTextEditor();
+    if (!editor) return;
+
+    QTextCursor cursor = editor->textCursor();
+    cursor.insertText("__asm__ __volatile__(\"int3\");");
+}

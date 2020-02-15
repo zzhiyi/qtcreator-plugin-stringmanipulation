@@ -69,6 +69,16 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     menu->addAction(cmdStripSpaceInSelectedString);
     contextMenu->addAction(cmdStripSpaceInSelectedString);
 
+    // Add Break Point
+    QAction *actionAddBreakPoint = new QAction(tr("Add Break Point"), this);
+    Core::Command *cmdAddBreakPoint = Core::ActionManager::registerAction(
+        actionAddBreakPoint, Constants::ADD_BREAK_POINT,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionAddBreakPoint, &QAction::triggered, &core,
+            &StringManipulationCore::addBreakPoint);
+    menu->addAction(cmdAddBreakPoint);
+    contextMenu->addAction(cmdAddBreakPoint);
+
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
     Core::ActionContainer *cppEditorContextMenu =
