@@ -10,7 +10,7 @@ public:
     explicit StringManipulationCore(QObject *parent = nullptr);
 
 public slots:
-    void stringToCharArray();
+    void selectedStringToCharArray();
 };
 
 #endif // STRINGMANIPULATIONCORE_HPP

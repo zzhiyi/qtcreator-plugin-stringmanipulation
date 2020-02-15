@@ -1,4 +1,4 @@
-﻿#include "stringmanipulationplugin.hpp"
+#include "stringmanipulationplugin.hpp"
 #include "stringmanipulationconstants.hpp"
 
 #include <coreplugin/actionmanager/actioncontainer.h>
@@ -43,24 +43,26 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     Q_UNUSED(arguments)
     Q_UNUSED(errorString)
 
-    QAction *actionSelectedText2CharArray = new QAction(tr("Selected Text to Char Array"), this);
-    Core::Command *cmdSelectedText2CharArray = Core::ActionManager::registerAction(
-        actionSelectedText2CharArray, Constants::SELECTEDTEXT2CHARARRAY_ACTION_ID,
-        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
-    connect(actionSelectedText2CharArray, &QAction::triggered, &core,
-            &StringManipulationCore::stringToCharArray);
-
     Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
     menu->menu()->setTitle(tr("String Manipulation"));
-    menu->addAction(cmdSelectedText2CharArray);
+    Core::ActionContainer *contextMenu =
+        Core::ActionManager::createMenu(Constants::CONTEXT_MENU_ID);
+    contextMenu->menu()->setTitle(tr("String Manipulation"));
+
+    // Selected String to Char Array
+    QAction *actionSelectedTextToCharArray = new QAction(tr("Selected String to Char Array"), this);
+    Core::Command *cmdSelectedStringToCharArray = Core::ActionManager::registerAction(
+        actionSelectedTextToCharArray, Constants::SELECTED_STRING_TO_CHAR_ARRAY_ACTION_ID,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionSelectedTextToCharArray, &QAction::triggered, &core,
+            &StringManipulationCore::selectedStringToCharArray);
+    menu->addAction(cmdSelectedStringToCharArray);
+    contextMenu->addAction(cmdSelectedStringToCharArray);
+
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
     Core::ActionContainer *cppEditorContextMenu =
         Core::ActionManager::createMenu(CppEditor::Constants::M_CONTEXT);
-    Core::ActionContainer *contextMenu =
-        Core::ActionManager::createMenu(Constants::CONTEXT_MENU_ID);
-    contextMenu->menu()->setTitle(tr("String Manipulation"));
-    contextMenu->addAction(cmdSelectedText2CharArray);
     cppEditorContextMenu->addSeparator(Core::Context(CppEditor::Constants::CPPEDITOR_ID));
     cppEditorContextMenu->addMenu(contextMenu);
 

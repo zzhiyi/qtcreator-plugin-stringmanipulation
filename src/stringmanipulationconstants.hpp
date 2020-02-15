@@ -1,9 +1,9 @@
-﻿#pragma once
+#pragma once
 
 namespace StringManipulation {
 namespace Constants {
 
-const char SELECTEDTEXT2CHARARRAY_ACTION_ID[] = "StringManipulation.StringToCharArray";
+const char SELECTED_STRING_TO_CHAR_ARRAY_ACTION_ID[] = "StringManipulation.SelectedStringToCharArray";
 const char MENU_ID[] = "StringManipulation.Menu";
 const char CONTEXT_MENU_ID[] = "StringManipulation.ContextMenu";
 
