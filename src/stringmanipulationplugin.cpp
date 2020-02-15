@@ -89,6 +89,16 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     menu->addAction(cmdSortDeclarationByLength);
     contextMenu->addAction(cmdSortDeclarationByLength);
 
+    // Paste Diff
+    QAction *actionPasteDiff = new QAction(tr("Paste Diff"), this);
+    Core::Command *cmdPasteDiff = Core::ActionManager::registerAction(
+        actionPasteDiff, Constants::PASTE_DIFF,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionPasteDiff, &QAction::triggered, &core,
+            &StringManipulationCore::pasteDiff);
+    menu->addAction(cmdPasteDiff);
+    contextMenu->addAction(cmdPasteDiff);
+
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
     Core::ActionContainer *cppEditorContextMenu =

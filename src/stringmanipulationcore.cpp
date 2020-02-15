@@ -1,5 +1,7 @@
 #include "stringmanipulationcore.hpp"
 #include <texteditor/texteditor.h>
+#include <QApplication>
+#include <QClipboard>
 #include <QStringBuilder>
 using namespace TextEditor;
 
@@ -118,4 +120,32 @@ void StringManipulationCore::sortDeclarationByLength()
     if (!cursor.hasSelection()) return;
 
     cursor.insertText(sortDeclarationByLengthConverter(cursor.selectedText()));
+}
+
+static QString pasteDiffConverter(const QString &src)
+{
+    QStringList stringList = src.split("\n");
+    QString result;
+
+    for (int i = 0; i < stringList.size(); i++) {
+        if (stringList[i].startsWith("+") || stringList[i].startsWith(" "))
+            result += stringList[i].remove(0, 1) + "\n";
+        else if (!stringList[i].startsWith("-"))
+            result += stringList[i] + "\n";
+    }
+
+    /* Remove the last newline */
+    result.truncate(result.length() - 1);
+    return result;
+}
+
+void StringManipulationCore::pasteDiff()
+{
+    BaseTextEditor *editor = BaseTextEditor::currentTextEditor();
+    if (!editor) return;
+
+    QTextCursor cursor = editor->textCursor();
+    QClipboard *clipboard = QApplication::clipboard();
+
+    cursor.insertText(pasteDiffConverter(clipboard->text()));
 }

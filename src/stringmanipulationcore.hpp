@@ -14,6 +14,7 @@ public slots:
     void stripSpaceInSelectedString();
     void addBreakPoint();
     void sortDeclarationByLength();
+    void pasteDiff();
 };
 
 #endif // STRINGMANIPULATIONCORE_HPP
