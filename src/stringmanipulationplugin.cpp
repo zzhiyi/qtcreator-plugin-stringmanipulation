@@ -79,6 +79,16 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     menu->addAction(cmdAddBreakPoint);
     contextMenu->addAction(cmdAddBreakPoint);
 
+    // Sort Declaration By Length
+    QAction *actionSortDeclarationByLength = new QAction(tr("Sort Declaration By Length"), this);
+    Core::Command *cmdSortDeclarationByLength = Core::ActionManager::registerAction(
+        actionSortDeclarationByLength, Constants::SORT_DECLARATION_BY_LENGTH,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionSortDeclarationByLength, &QAction::triggered, &core,
+            &StringManipulationCore::sortDeclarationByLength);
+    menu->addAction(cmdSortDeclarationByLength);
+    contextMenu->addAction(cmdSortDeclarationByLength);
+
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
     Core::ActionContainer *cppEditorContextMenu =

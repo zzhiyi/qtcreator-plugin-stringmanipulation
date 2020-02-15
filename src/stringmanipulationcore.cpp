@@ -93,3 +93,29 @@ void StringManipulationCore::addBreakPoint()
     QTextCursor cursor = editor->textCursor();
     cursor.insertText("__asm__ __volatile__(\"int3\");");
 }
+
+static bool compare_declaration(const QString &s1, const QString &s2) {
+    if (s1.length() != s2.length())
+        return s1.length() > s2.length();
+    else
+        return s1 < s2;
+}
+
+static QString sortDeclarationByLengthConverter(const QString &src)
+{
+    QStringList stringList = src.split(QChar::ParagraphSeparator);
+
+    std::sort(stringList.begin(), stringList.end(), compare_declaration);
+    return stringList.join('\n');
+}
+
+void StringManipulationCore::sortDeclarationByLength()
+{
+    BaseTextEditor *editor = BaseTextEditor::currentTextEditor();
+    if (!editor) return;
+
+    QTextCursor cursor = editor->textCursor();
+    if (!cursor.hasSelection()) return;
+
+    cursor.insertText(sortDeclarationByLengthConverter(cursor.selectedText()));
+}

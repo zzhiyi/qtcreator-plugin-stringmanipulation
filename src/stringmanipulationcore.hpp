@@ -13,6 +13,7 @@ public slots:
     void selectedStringToCharArray();
     void stripSpaceInSelectedString();
     void addBreakPoint();
+    void sortDeclarationByLength();
 };
 
 #endif // STRINGMANIPULATIONCORE_HPP
