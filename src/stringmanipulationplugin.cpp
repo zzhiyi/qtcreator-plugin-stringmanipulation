@@ -49,6 +49,26 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
         Core::ActionManager::createMenu(Constants::CONTEXT_MENU_ID);
     contextMenu->menu()->setTitle(tr("String Manipulation"));
 
+    // Sort Declaration By Length
+    QAction *actionSortDeclarationByLength = new QAction(tr("Sort Declaration By Length"), this);
+    Core::Command *cmdSortDeclarationByLength = Core::ActionManager::registerAction(
+        actionSortDeclarationByLength, Constants::SORT_DECLARATION_BY_LENGTH,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionSortDeclarationByLength, &QAction::triggered, &core,
+            &StringManipulationCore::sortDeclarationByLength);
+    menu->addAction(cmdSortDeclarationByLength);
+    contextMenu->addAction(cmdSortDeclarationByLength);
+
+    // Paste Diff
+    QAction *actionPasteDiff = new QAction(tr("Paste Diff"), this);
+    Core::Command *cmdPasteDiff = Core::ActionManager::registerAction(
+        actionPasteDiff, Constants::PASTE_DIFF,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionPasteDiff, &QAction::triggered, &core,
+            &StringManipulationCore::pasteDiff);
+    menu->addAction(cmdPasteDiff);
+    contextMenu->addAction(cmdPasteDiff);
+
     // Selected String to Char Array
     QAction *actionSelectedTextToCharArray = new QAction(tr("Selected String to Char Array"), this);
     Core::Command *cmdSelectedStringToCharArray = Core::ActionManager::registerAction(
@@ -78,26 +98,6 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
             &StringManipulationCore::addBreakPoint);
     menu->addAction(cmdAddBreakPoint);
     contextMenu->addAction(cmdAddBreakPoint);
-
-    // Sort Declaration By Length
-    QAction *actionSortDeclarationByLength = new QAction(tr("Sort Declaration By Length"), this);
-    Core::Command *cmdSortDeclarationByLength = Core::ActionManager::registerAction(
-        actionSortDeclarationByLength, Constants::SORT_DECLARATION_BY_LENGTH,
-        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
-    connect(actionSortDeclarationByLength, &QAction::triggered, &core,
-            &StringManipulationCore::sortDeclarationByLength);
-    menu->addAction(cmdSortDeclarationByLength);
-    contextMenu->addAction(cmdSortDeclarationByLength);
-
-    // Paste Diff
-    QAction *actionPasteDiff = new QAction(tr("Paste Diff"), this);
-    Core::Command *cmdPasteDiff = Core::ActionManager::registerAction(
-        actionPasteDiff, Constants::PASTE_DIFF,
-        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
-    connect(actionPasteDiff, &QAction::triggered, &core,
-            &StringManipulationCore::pasteDiff);
-    menu->addAction(cmdPasteDiff);
-    contextMenu->addAction(cmdPasteDiff);
 
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
