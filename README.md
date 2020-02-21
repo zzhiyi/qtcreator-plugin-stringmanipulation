@@ -18,7 +18,7 @@ int cd;     int a;
 ```
 * Paste Diff:  
 ```
-+  added     added
++ added      added
   old     -> old
 - deleted
 ```
