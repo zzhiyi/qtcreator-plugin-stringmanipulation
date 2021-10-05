@@ -43,11 +43,24 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     Q_UNUSED(arguments)
     Q_UNUSED(errorString)
 
+    Core::ActionContainer *cppEditorContextMenu =
+        Core::ActionManager::createMenu(CppEditor::Constants::M_CONTEXT);
+
     Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
     menu->menu()->setTitle(tr("String Manipulation"));
     Core::ActionContainer *contextMenu =
         Core::ActionManager::createMenu(Constants::CONTEXT_MENU_ID);
     contextMenu->menu()->setTitle(tr("String Manipulation"));
+
+    // Search in Google
+    QAction *actionSearchInGoogle = new QAction(tr("Search in Google"), this);
+    Core::Command *cmdSearchInGoogle = Core::ActionManager::registerAction(
+        actionSearchInGoogle, Constants::SEARCH_IN_GOOGLE,
+        Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionSearchInGoogle, &QAction::triggered, &core,
+            &StringManipulationCore::searchInGoogle);
+    cppEditorContextMenu->addAction(cmdSearchInGoogle);
+    menu->addAction(cmdSearchInGoogle);
 
     // Sort Declaration By Length
     QAction *actionSortDeclarationByLength = new QAction(tr("Sort Declaration By Length"), this);
@@ -101,8 +114,6 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
 
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
-    Core::ActionContainer *cppEditorContextMenu =
-        Core::ActionManager::createMenu(CppEditor::Constants::M_CONTEXT);
     cppEditorContextMenu->addSeparator(Core::Context(CppEditor::Constants::CPPEDITOR_ID));
     cppEditorContextMenu->addMenu(contextMenu);
 

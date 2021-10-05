@@ -15,6 +15,7 @@ public slots:
     void addBreakPoint();
     void sortDeclarationByLength();
     void pasteDiff();
+    void searchInGoogle();
 };
 
 #endif // STRINGMANIPULATIONCORE_HPP

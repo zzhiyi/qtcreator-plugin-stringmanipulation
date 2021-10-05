@@ -3,6 +3,8 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QStringBuilder>
+#include <QDesktopServices>
+#include <QUrl>
 using namespace TextEditor;
 
 StringManipulationCore::StringManipulationCore(QObject *parent) : QObject(parent)
@@ -52,6 +54,18 @@ static QString stringToCharArrayConverter(const QString &src)
     }
     result += "0}";
     return result;
+}
+
+void StringManipulationCore::searchInGoogle()
+{
+    BaseTextEditor *editor = BaseTextEditor::currentTextEditor();
+    if (!editor) return;
+
+    QTextCursor cursor = editor->textCursor();
+    if (!cursor.hasSelection()) return;
+
+    QDesktopServices::openUrl(QUrl("https://www.google.com/search?q="
+                                   + cursor.selectedText().replace(" ", "+")));
 }
 
 void StringManipulationCore::selectedStringToCharArray()

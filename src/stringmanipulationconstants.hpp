@@ -3,6 +3,7 @@
 namespace StringManipulation {
 namespace Constants {
 
+const char SEARCH_IN_GOOGLE[] = "StringManipulation.SearchInGoogle";
 const char SELECTED_STRING_TO_CHAR_ARRAY_ACTION_ID[] = "StringManipulation.SelectedStringToCharArray";
 const char STRIP_SPACE_IN_SELECTED_STRING[] = "StringManipulation.StripSpaceInSelectedString";
 const char ADD_BREAK_POINT[] = "StringManipulation.AddBreakPoint";

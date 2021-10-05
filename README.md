@@ -1,7 +1,8 @@
 # qtcreator-plugin-stringmanipulation
 A String Manipulation Plugin For Qt Creator (Usefull in wine development)
 
-## Feature:  
+## Feature:
+* Search selected string in Google
 * Selected String to Char Array:   
 `abcd` -> `{'a','b','c','d',0}`  
 `'`    -> `{'\'',0}`  
