@@ -62,7 +62,11 @@ void StringManipulationCore::searchInGoogle()
     if (!editor) return;
 
     QTextCursor cursor = editor->textCursor();
-    if (!cursor.hasSelection()) return;
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+
+    if (!cursor.hasSelection())
+        return;
 
     QDesktopServices::openUrl(QUrl("https://www.google.com/search?btnI=&sourceid=navclient&gfns=1&q="
                                    + cursor.selectedText().replace(" ", "+")));
@@ -74,7 +78,11 @@ void StringManipulationCore::selectedStringToCharArray()
     if (!editor) return;
 
     QTextCursor cursor = editor->textCursor();
-    if (!cursor.hasSelection()) return;
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+
+    if (!cursor.hasSelection())
+        return;
 
     cursor.insertText(stringToCharArrayConverter(cursor.selectedText()));
 }
