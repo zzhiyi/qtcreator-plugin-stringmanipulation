@@ -1,7 +1,7 @@
 ﻿{
     \"Name\" : \"String Manipulation\",
-    \"Version\" : \"0.0.5\",
-    \"CompatVersion\" : \"0.0.5\",
+    \"Version\" : \"0.1.0\",
+    \"CompatVersion\" : \"0.1.0\",
     \"Vendor\" : \"Zhiyi Zhang\",
     \"Copyright\" : \"(C) 2020 Zhiyi Zhang\",
     \"License\" : \"GPL\",
