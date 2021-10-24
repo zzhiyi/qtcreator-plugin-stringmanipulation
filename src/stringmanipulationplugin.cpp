@@ -8,7 +8,6 @@
 #include <coreplugin/icontext.h>
 #include <coreplugin/icore.h>
 #include <texteditor/texteditorconstants.h>
-#include <cppeditor/cppeditorconstants.h>
 
 #include <QAction>
 #include <QMainWindow>
@@ -43,8 +42,8 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     Q_UNUSED(arguments)
     Q_UNUSED(errorString)
 
-    Core::ActionContainer *cppEditorContextMenu =
-        Core::ActionManager::createMenu(CppEditor::Constants::M_CONTEXT);
+    Core::ActionContainer *textEditorContextMenu =
+        Core::ActionManager::createMenu(TextEditor::Constants::M_STANDARDCONTEXTMENU);
 
     Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
     menu->menu()->setTitle(tr("String Manipulation"));
@@ -59,7 +58,7 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
         Core::Context(TextEditor::Constants::C_TEXTEDITOR));
     connect(actionSearchInGoogle, &QAction::triggered, &core,
             &StringManipulationCore::searchInGoogle);
-    cppEditorContextMenu->addAction(cmdSearchInGoogle);
+    textEditorContextMenu->addAction(cmdSearchInGoogle);
     menu->addAction(cmdSearchInGoogle);
 
     // Sort Declaration By Length
@@ -114,8 +113,8 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
 
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
-    cppEditorContextMenu->addSeparator(Core::Context(CppEditor::Constants::CPPEDITOR_ID));
-    cppEditorContextMenu->addMenu(contextMenu);
+    textEditorContextMenu->addSeparator(Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    textEditorContextMenu->addMenu(contextMenu);
 
     return true;
 }
