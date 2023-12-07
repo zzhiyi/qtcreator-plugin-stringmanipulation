@@ -59,6 +59,7 @@ static QString stringToCharArrayConverter(const QString &src)
 void StringManipulationCore::searchInGoogle()
 {
     BaseTextEditor *editor = BaseTextEditor::currentTextEditor();
+    QString url;
     if (!editor) return;
 
     QTextCursor cursor = editor->textCursor();
@@ -68,8 +69,13 @@ void StringManipulationCore::searchInGoogle()
     if (!cursor.hasSelection())
         return;
 
-    QDesktopServices::openUrl(QUrl("https://www.google.com/search?btnI=&sourceid=navclient&gfns=1&q="
-                                   + cursor.selectedText().replace(" ", "+")));
+    url = QString("https://www.google.com.hk/search?btnI=&sourceid=navclient&gfns=1&q="
+                  + cursor.selectedText().replace(" ", "+"));
+
+    if (editor->document()->filePath().contains("wine"))
+        url.append("+win32");
+
+    QDesktopServices::openUrl(QUrl(url));
 }
 
 void StringManipulationCore::selectedStringToCharArray()
