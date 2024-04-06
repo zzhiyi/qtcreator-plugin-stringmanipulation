@@ -13,6 +13,7 @@ public slots:
     void selectedStringToCharArray();
     void stripSpaceInSelectedString();
     void addBreakPoint();
+    void addReturnAddress();
     void sortDeclarationByLength();
     void pasteDiff();
     void searchInGoogle();

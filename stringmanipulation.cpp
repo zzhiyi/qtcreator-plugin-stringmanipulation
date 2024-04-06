@@ -110,6 +110,16 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     menu->addAction(cmdAddBreakPoint);
     contextMenu->addAction(cmdAddBreakPoint);
 
+    // Add Return Address
+    QAction *actionAddReturnAdress = new QAction(tr("Add Return Address"), this);
+    Core::Command *cmdAddReturnAddress = Core::ActionManager::registerAction(
+            actionAddReturnAdress, Constants::ADD_RETURN_ADDRESS,
+            Core::Context(TextEditor::Constants::C_TEXTEDITOR));
+    connect(actionAddReturnAdress, &QAction::triggered, &core,
+            &StringManipulationCore::addReturnAddress);
+    menu->addAction(cmdAddReturnAddress);
+    contextMenu->addAction(cmdAddReturnAddress);
+
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
     textEditorContextMenu->addSeparator(Core::Context(TextEditor::Constants::C_TEXTEDITOR));

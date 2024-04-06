@@ -118,6 +118,15 @@ void StringManipulationCore::addBreakPoint()
     cursor.insertText("__asm__ __volatile__(\"int3\");");
 }
 
+void StringManipulationCore::addReturnAddress()
+{
+    BaseTextEditor *editor = BaseTextEditor::currentTextEditor();
+    if (!editor) return;
+
+    QTextCursor cursor = editor->textCursor();
+    cursor.insertText("FIXME(\"--- line %d return address %p\\n\", __LINE__, __builtin_return_address(0));");
+}
+
 static bool compare_declaration(const QString &s1, const QString &s2) {
     if (s1.length() != s2.length())
         return s1.length() > s2.length();
