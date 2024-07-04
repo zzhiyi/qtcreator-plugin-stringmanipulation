@@ -68,7 +68,7 @@ void StringManipulationCore::searchInGoogle()
     if (!cursor.hasSelection())
         return;
 
-    QDesktopServices::openUrl(QUrl("https://www.google.com/search?btnI=&sourceid=navclient&gfns=1&q="
+    QDesktopServices::openUrl(QUrl("https://www.google.com/search?q="
                                    + cursor.selectedText().replace(" ", "+")));
 }
 
