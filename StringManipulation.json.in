@@ -1,7 +1,9 @@
 {
+    "Id" : "stringmanipulation",
     "Name" : "String Manipulation",
     "Version" : "0.3.0",
     "CompatVersion" : "0.3.0",
+    "VendorId" : "zhiyi_zhang",
     "Vendor" : "Zhiyi Zhang",
     "Copyright" : "(C) Zhiyi Zhang",
     "License" : "GPL-3.0",

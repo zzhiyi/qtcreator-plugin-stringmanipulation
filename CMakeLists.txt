@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Remove when sharing with others.
-# list(APPEND CMAKE_PREFIX_PATH "/home/eric/src/build-qt-creator-Desktop_Qt_6_2_4_GCC_64bit-Release")
+list(APPEND CMAKE_PREFIX_PATH "/home/eric/build/build-qt-creator-Replacement_for_Desktop_Qt_GCC_64bit-Release")
 
 project(StringManipulation)
 
