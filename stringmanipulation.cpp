@@ -29,7 +29,7 @@ StringManipulationPlugin::~StringManipulationPlugin()
     // Delete members
 }
 
-bool StringManipulationPlugin::initialize(const QStringList &arguments, QString *errorString)
+Utils::Result<> StringManipulationPlugin::initialize(const QStringList &arguments)
 {
     // Register objects in the plugin manager's object pool
     // Load settings
@@ -39,7 +39,6 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     // depends on have initialized their members.
 
     Q_UNUSED(arguments)
-    Q_UNUSED(errorString)
 
     Core::ActionContainer *textEditorContextMenu =
         Core::ActionManager::createMenu(TextEditor::Constants::M_STANDARDCONTEXTMENU);
@@ -125,7 +124,7 @@ bool StringManipulationPlugin::initialize(const QStringList &arguments, QString 
     textEditorContextMenu->addSeparator(Core::Context(TextEditor::Constants::C_TEXTEDITOR));
     textEditorContextMenu->addMenu(contextMenu);
 
-    return true;
+    return Utils::ResultOk;
 }
 
 void StringManipulationPlugin::extensionsInitialized()
